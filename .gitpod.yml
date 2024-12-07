@@ -1,0 +1,19 @@
+image:
+    file: .gitpod.Dockerfile
+ports:
+    - port: 5900
+      onOpen: ignore
+    - port: 6080
+      onOpen: open-preview
+tasks:
+    - name: install cypress to workspace
+      init: |
+          npm install
+    - name: run chrome tests
+      command: |
+          gp sync-await
+          yes | npx playwright test
+    # - name: open playwright application
+    #   command: |
+    #       gp sync-done
+    #       yes | npx cypress open
